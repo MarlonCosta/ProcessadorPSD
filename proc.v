@@ -1,17 +1,17 @@
 module proc (DIN, Resetn, Clock, Run, Done, BusWires);
-	input [8:0]DIN;
+	input [8:0]DIN; 
 	input Resetn, Clock, Run;
 	output Done;
 	output [8:0] BusWires;
 	reg [0:7] Rin, Rout;
 	reg Done, Ain, Gin, Gout, AddSub, IRin, DINout;
-	reg [1:0] Tstep_Q, Tstep_D;
-	wire [2:0] I;
-	wire [0:8] IR;
-	wire [0:7] Xreg, Yreg;
-   wire [8:0] R0, R1, R2, R3, R4, R5, R6, R7, A, G;
-	reg [8:0] Sum;
-	wire [0:9] Sel; 
+	reg [1:0] Tstep_Q, Tstep_D; //States
+	wire [2:0] I; //Instruction
+	wire [0:8] IR; //Instruction Register
+	wire [0:7] Xreg, Yreg;  //Operation Registers
+   wire [8:0] R0, R1, R2, R3, R4, R5, R6, R7, A, G; //Registers trails
+	reg [8:0] Sum; //Sum output register
+	wire [0:9] Sel; //Mux Selector
 	reg [8:0] BusWires;
 	
 	//variaveis faltando: 
@@ -72,29 +72,29 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 						Ain = 1'b1;
 					end
 				endcase
-			T2:   
-				case (I)
-					add: 
-					begin
-						Rout = Yreg;
-						Gin = 1'b1;
-					end
-					sub: 
-					begin
-						Rout = Yreg;
-						AddSub = 1'b1;
-						Gin = 1'b1;
-					end
-				endcase
-			T3:  
-				case (I)
-					add, sub: 
-					begin
-						Gout = 1'b1;
-						Rin = Xreg;
-						Done = 1'b1;
-					end
-				endcase
+//			T2:   
+//				case (I)
+//					add: 
+//					begin
+//						Rout = Yreg;
+//						Gin = 1'b1;
+//					end
+//					sub: 
+//					begin
+//						Rout = Yreg;
+//						AddSub = 1'b1;
+//						Gin = 1'b1;
+//					end
+//				endcase
+//			T3:  
+//				case (I)
+//					add, sub: 
+//					begin
+//						Gout = 1'b1;
+//						Rin = Xreg;
+//						Done = 1'b1;
+//					end
+//				endcase
 		endcase
     end
 
@@ -113,7 +113,9 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 		regn reg_5 (BusWires, Rin[5], Clock, R5);
 		regn reg_6 (BusWires, Rin[6], Clock, R6);
 		regn reg_7 (BusWires, Rin[7], Clock, R7);
-	
+		regn reg_A (BusWires, Ain, Clock, A);
+		regn reg_IR (DIN[8:0], IRin, Clock, IR);
+		
 	always @(AddSub or A or BusWires)
 		begin
 		if (!AddSub)
@@ -121,7 +123,9 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 	    else
 			Sum = A - BusWires;
 		end
+		
 	regn reg_G (Sum, Gin, Clock, G);
+	
 	assign Sel = {Rout, Gout, DINout};
 	always @(*)
 	begin
