@@ -1,6 +1,3 @@
-`include "regn.sv"
-`include "dec3to8.sv"
-
 module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 	input [8:0]DIN; //Data input
 	input Resetn, Clock, Run;
@@ -20,6 +17,18 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 	dec3to8 decX (IR[5:3], 1'b1, Xreg);
 	dec3to8 decY (IR[8:6], 1'b1, Yreg);
 
+	regn reg_0 (BusWires, Rin[0], Clock, R0);
+	regn reg_1 (BusWires, Rin[1], Clock, R1);
+	regn reg_2 (BusWires, Rin[2], Clock, R2);
+	regn reg_3 (BusWires, Rin[3], Clock, R3);
+	regn reg_4 (BusWires, Rin[4], Clock, R4);
+	regn reg_5 (BusWires, Rin[5], Clock, R5);
+	regn reg_6 (BusWires, Rin[6], Clock, R6);
+	regn reg_7 (BusWires, Rin[7], Clock, R7);
+	regn reg_A (BusWires, Ain, Clock, A);
+	regn reg_G (Sum, Gin, Clock, G);
+	regn reg_IR (DIN[8:0], IRin, Clock, IR);
+	
 	// Controle de estados do FSM	
 
 	always @(Tstep_Q, Run, Done)
@@ -44,15 +53,12 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 	// Controle das saídas da FSM
 	always @(Tstep_Q or I or Xreg or Yreg)
 	begin
+		Done = 1'b0; Ain = 1'b0; Gin = 1'b0; Gout = 1'b0; AddSub = 1'b0;
+		IRin = 1'b0; DINout = 1'b0; Rin = 8'b0; Rout = 8'b0;
 		case (Tstep_Q)
 			T0: 
 				begin
 					IRin = 1'b1;
-					Done = 1'b0;
-					Rin = 1'b0;
-					Rout = 1'b0;
-					Xreg = 1'b0;
-					Yreg = 1'b0;
 				end
 			T1:   
 				case (I)
@@ -68,9 +74,40 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 						Rin = Xreg; 
 						Done = 1'b1;
 					end
-					default: Done = 1'b0;
+					add, sub:
+					begin
+						Rout = Xreg;
+						Ain = 1'b1;
+					end
+					default: ;
 				endcase
-			default: Done = 1'b0;
+					
+			T2:   
+				case (I)
+					add: 
+					begin
+						Rout = Yreg;
+						Gin = 1'b1;
+					end
+					sub: 
+					begin
+						Rout = Yreg;
+						AddSub = 1'b1;
+						Gin = 1'b1;
+					end
+					default: ;
+				endcase
+			T3:  
+				case (I)
+					add, sub: 
+					begin
+						Gout = 1'b1;
+						Rin = Xreg;
+						Done = 1'b1;
+					end
+					default: ;
+				endcase
+			default: ;
 		endcase
     end
 
@@ -80,19 +117,6 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 			Tstep_Q <= T0;
 		else
 			Tstep_Q <= Tstep_D;
-
-		regn reg_0 (BusWires, Rin[0], Clock, R0);
-		regn reg_1 (BusWires, Rin[1], Clock, R1);
-		regn reg_2 (BusWires, Rin[2], Clock, R2);
-		regn reg_3 (BusWires, Rin[3], Clock, R3);
-		regn reg_4 (BusWires, Rin[4], Clock, R4);
-		regn reg_5 (BusWires, Rin[5], Clock, R5);
-		regn reg_6 (BusWires, Rin[6], Clock, R6);
-		regn reg_7 (BusWires, Rin[7], Clock, R7);
-		regn reg_A (BusWires, Ain, Clock, A);
-		regn reg_G (Sum, Gin, Clock, G);
-		regn reg_IR (DIN[8:0], IRin, Clock, IR);
-		
 		
 	//ULA
 	always @(AddSub or A or BusWires)
@@ -103,7 +127,7 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 			Sum = A - BusWires;
 		end
 		
-	assign Sel = {Rout, Gout, DINout};
+	assign Sel = {Rout, Gout, DINout}; //Seletor do Mux
 	
 	always @(*)
 	begin
