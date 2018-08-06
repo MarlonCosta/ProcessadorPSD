@@ -7,11 +7,11 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 	logic [1:0] Tstep_Q, Tstep_D; //States
 	logic [2:0] I; //Instruction
 	logic [7:0] Xreg, Yreg, Rin, Rout;
-   logic [8:0] R0, R1, R2, R3, R4, R5, R6, R7, A, G, Sum, BusWires, IR; //registers trails
+   	logic [8:0] R0, R1, R2, R3, R4, R5, R6, R7, A, G, Sum, BusWires, IR; //registers trails
 	logic [9:0] Sel; //Mux Selector
 	
 	parameter T0 = 2'b00, T1 = 2'b01, T2 = 2'b10, T3 = 2'b11; //Estados
-   parameter mv = 3'b000, mvi = 3'b001, add = 3'b010, sub = 3'b011; //Instruçoes
+   	parameter mv = 3'b000, mvi = 3'b001, add = 3'b010, sub = 3'b011; //Instruçoes
 
 	assign I = IR[2:0];
 	dec3to8 decX (IR[5:3], 1'b1, Xreg);
@@ -53,12 +53,19 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 	// Controle das saídas da FSM
 	always @(Tstep_Q or I or Xreg or Yreg)
 	begin
-		Done = 1'b0; Ain = 1'b0; Gin = 1'b0; Gout = 1'b0; AddSub = 1'b0;
-		IRin = 1'b0; DINout = 1'b0; Rin = 8'b0; Rout = 8'b0;
 		case (Tstep_Q)
 			T0: 
 				begin
 					IRin = 1'b1;
+					Done = 1'b0;
+					Ain = 1'b0;
+					Gin = 1'b0;
+					Gout = 1'b0;
+					AddSub = 1'b0;
+					IRin = 1'b0;
+					DINout = 1'b0;
+					Rin = 8'b0;
+					Rout = 8'b0;
 				end
 			T1:   
 				case (I)
@@ -67,17 +74,39 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 						Rout = Yreg;
 						Rin = Xreg;
 						Done = 1'b1;
+						IRin = 1'b1;
+						Ain = 1'b0;
+						Gin = 1'b0;
+						Gout = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
 					end
 					mvi: 
 					begin
 						DINout = 1'b1;
 						Rin = Xreg; 
 						Done = 1'b1;
+						IRin = 1'b1;
+						Ain = 1'b0;
+						Gin = 1'b0;
+						Gout = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						Rout = 8'b0;
 					end
 					add, sub:
 					begin
 						Rout = Xreg;
 						Ain = 1'b1;
+						IRin = 1'b1;
+						Done = 1'b0;
+						Gin = 1'b0;
+						Gout = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
+						Rin = 8'b0;
 					end
 					default: ;
 				endcase
@@ -88,14 +117,39 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 					begin
 						Rout = Yreg;
 						Gin = 1'b1;
+						IRin = 1'b1;
+						Done = 1'b0;
+						Ain = 1'b0;
+						Gout = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
+						Rin = 8'b0;
 					end
 					sub: 
 					begin
 						Rout = Yreg;
 						AddSub = 1'b1;
 						Gin = 1'b1;
+						IRin = 1'b1;
+						Done = 1'b0;
+						Ain = 1'b0;
+						Gout = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
+						Rin = 8'b0;
 					end
-					default: ;
+					default: 
+						IRin = 1'b1;
+						Done = 1'b0;
+						Ain = 1'b0;
+						Gin = 1'b0;
+						Gout = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
+						Rin = 8'b0;
+						Rout = 8'b0;
 				endcase
 			T3:  
 				case (I)
@@ -104,10 +158,37 @@ module proc (DIN, Resetn, Clock, Run, Done, BusWires);
 						Gout = 1'b1;
 						Rin = Xreg;
 						Done = 1'b1;
+						IRin = 1'b1;
+						Ain = 1'b0;
+						Gin = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
+						Rout = 8'b0;
 					end
-					default: ;
+					default:
+						IRin = 1'b1;
+						Done = 1'b0;
+						Ain = 1'b0;
+						Gin = 1'b0;
+						Gout = 1'b0;
+						AddSub = 1'b0;
+						IRin = 1'b0;
+						DINout = 1'b0;
+						Rin = 8'b0;
+						Rout = 8'b0;
 				endcase
-			default: ;
+			default: 
+				IRin = 1'b0;
+				Done = 1'b0;
+				Ain = 1'b0;
+				Gin = 1'b0;
+				Gout = 1'b0;
+				AddSub = 1'b0;
+				IRin = 1'b0;
+				DINout = 1'b0;
+				Rin = 8'b0;
+				Rout = 8'b0;
 		endcase
     end
 
