@@ -1,5 +1,5 @@
 Flow report for proc
-Wed Aug  1 12:13:59 2018
+Mon Aug 06 09:52:46 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Aug  1 12:13:59 2018       ;
+; Flow Status                     ; Successful - Mon Aug 06 09:52:46 2018       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; proc                                        ;
 ; Top-level Entity Name           ; proc                                        ;
@@ -100,7 +100,17 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 1004 MB             ; 00:00:33                           ;
 ; Fitter               ; 00:00:49     ; 1.0                     ; 2421 MB             ; 00:01:26                           ;
-; Total                ; 00:01:03     ; --                      ; --                  ; 00:01:59                           ;
+; EDA Netlist Writer   ; 00:00:14     ; 1.0                     ; 599 MB              ; 00:00:03                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 599 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 599 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 599 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:07     ; 1.0                     ; 599 MB              ; 00:00:03                           ;
+; EDA Netlist Writer   ; 00:00:06     ; 1.0                     ; 608 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:05     ; 1.0                     ; 599 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 608 MB              ; 00:00:03                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 598 MB              ; 00:00:03                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 608 MB              ; 00:00:02                           ;
+; Total                ; 00:01:52     ; --                      ; --                  ; 00:02:23                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -111,6 +121,16 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; labprog04        ; Linux Mint ; 18         ; x86_64         ;
 ; Fitter               ; labprog04        ; Linux Mint ; 18         ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-U7PF1SK  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -119,6 +139,16 @@ refer to the applicable agreement for further details.
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off proc -c proc
 quartus_fit --read_settings_files=off --write_settings_files=off proc -c proc
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source=/home/ifpb/ProcessadorPSD/Waveform4.vwf --testbench_file=/home/ifpb/ProcessadorPSD/simulation/qsim/Waveform4.vwf.vt
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source=/home/ifpb/ProcessadorPSD/Waveform4.vwf --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim/Waveform4.vwf.vt"
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source=/home/ifpb/ProcessadorPSD/Waveform4.vwf --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform4.vwf.vt"
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source=/home/ifpb/ProcessadorPSD/Waveform4.vwf --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform4.vwf.vt"
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\Waveform.vwf" --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform.vwf.vt"
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim" proc -c proc
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\Waveform.vwf" --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform.vwf.vt"
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim" proc -c proc
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\Waveform4.vwf" --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform4.vwf.vt"
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim" proc -c proc
 
 
 

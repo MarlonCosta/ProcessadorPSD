@@ -1,8 +1,8 @@
 /*<simulation_settings>
-<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="/home/ifpb/ProcessadorPSD/Waveform4.vwf" --testbench_file="/home/ifpb/ProcessadorPSD/simulation/qsim/Waveform4.vwf.vt"</ftestbench_cmd>
-<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="/home/ifpb/ProcessadorPSD/Waveform4.vwf" --testbench_file="/home/ifpb/ProcessadorPSD/simulation/qsim/Waveform4.vwf.vt"</ttestbench_cmd>
-<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="/home/ifpb/ProcessadorPSD/simulation/qsim/" proc -c proc</fnetlist_cmd>
-<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="/home/ifpb/ProcessadorPSD/simulation/qsim/" proc -c proc</tnetlist_cmd>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\Waveform4.vwf" --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform4.vwf.vt"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off proc -c proc --vector_source="/home/ifpb/ProcessadorPSD/Waveform4.vwf" --testbench_file="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\Waveform4.vwf.vt"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim" proc -c proc</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim\" proc -c proc</tnetlist_cmd>
 <modelsim_script>onerror {exit -code 1}
 vlib work
 vlog -work work proc.vo
@@ -20,6 +20,8 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -38,6 +40,8 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
+
 </modelsim_script_timing>
 <hdl_lang>verilog</hdl_lang>
 </simulation_settings>*/

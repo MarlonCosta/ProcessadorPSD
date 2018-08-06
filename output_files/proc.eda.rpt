@@ -1,5 +1,5 @@
 EDA Netlist Writer report for proc
-Wed Aug  1 12:04:34 2018
+Mon Aug 06 09:52:46 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -36,7 +36,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Aug  1 12:04:34 2018 ;
+; EDA Netlist Writer Status ; Successful - Mon Aug 06 09:52:46 2018 ;
 ; Revision Name             ; proc                                  ;
 ; Top-level Entity Name     ; proc                                  ;
 ; Family                    ; Cyclone V                             ;
@@ -65,13 +65,13 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------+---------------------------+
 
 
-+----------------------------------------------------+
-; Simulation Generated Files                         ;
-+----------------------------------------------------+
-; Generated Files                                    ;
-+----------------------------------------------------+
-; /home/ifpb/ProcessadorPSD/simulation/qsim//proc.vo ;
-+----------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Simulation Generated Files                                                    ;
++-------------------------------------------------------------------------------+
+; Generated Files                                                               ;
++-------------------------------------------------------------------------------+
+; D:/Users/mrlnr/Documents/Projetos Quartus/Processador/simulation/qsim/proc.vo ;
++-------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -93,14 +93,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: the sole purpose of programming logic devices manufactured by
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details.
-    Info: Processing started: Wed Aug  1 12:04:33 2018
-Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=/home/ifpb/ProcessadorPSD/simulation/qsim/ proc -c proc
+    Info: Processing started: Mon Aug 06 09:52:43 2018
+Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="D:\Users\mrlnr\Documents\Projetos Quartus\Processador\simulation\qsim" proc -c proc
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (204019): Generated file proc.vo in folder "/home/ifpb/ProcessadorPSD/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file proc.vo in folder "D:/Users/mrlnr/Documents/Projetos Quartus/Processador/simulation/qsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 1127 megabytes
-    Info: Processing ended: Wed Aug  1 12:04:34 2018
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Peak virtual memory: 608 megabytes
+    Info: Processing ended: Mon Aug 06 09:52:46 2018
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
 
 

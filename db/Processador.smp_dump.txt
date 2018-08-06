@@ -1,0 +1,7 @@
+
+State Machine - |proc|state
+Name state.T3 state.T2 state.T1 state.T0 
+state.T0 0 0 0 0 
+state.T1 0 0 1 1 
+state.T2 0 1 0 1 
+state.T3 1 0 0 1 

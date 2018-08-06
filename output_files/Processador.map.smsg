@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at proc.sv(50): always construct contains both blocking and non-blocking assignments File: D:/Users/mrlnr/Documents/Projetos Quartus/Processador/proc.sv Line: 50

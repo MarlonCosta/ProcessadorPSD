@@ -7,46 +7,46 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/home/ifpb/ProcessadorPSD/simulation/qsim
+d/home/ifpb/ProcessadorPSD/simulation/qsim
 vproc
-Z1 !s110 1533135875
+!s110 1533567235
 !i10b 1
-!s100 C_Td3IaVK4N5NkR=VPIzQ2
-I0EPGfzKPZF_Qz5<fd^:gA3
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-w1533135874
-8proc.vo
-Fproc.vo
+!s100 ac`2YO9]a>]mFY[YMOOjz1
+IMWQ>5AMhoSZXNO5Y;0KBO3
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dD:/Users/mrlnr/Documents/Projetos Quartus/Processador/simulation/qsim
+w1533567228
+8Processador.vo
+FProcessador.vo
 L0 31
-Z3 OV;L;10.5b;63
+Z2 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1533135875.000000
-!s107 proc.vo|
-!s90 -work|work|proc.vo|
+!s108 1533567235.000000
+!s107 Processador.vo|
+!s90 -work|work|Processador.vo|
 !i113 1
-Z5 o-work work
-Z6 tCvgOpt 0
+Z3 o-work work
+Z4 tCvgOpt 0
 vproc_vlg_vec_tst
-R1
+!s110 1533567237
 !i10b 1
-!s100 Obc8j`8WX4b:KE[Yc0X?o1
-ITcV8C[W<3LnV^^cmn=2aU2
-R2
+!s100 ^<=NQ31Bnhg4M<j7FXnje1
+I_Noza=femPc>U?CL;R6_m2
 R0
-w1533135872
-8Waveform4.vwf.vt
-FWaveform4.vwf.vt
+R1
+w1533567221
+8Waveform5.vwf.vt
+FWaveform5.vwf.vt
 L0 29
-R3
+R2
 r1
 !s85 0
 31
-R4
-!s107 Waveform4.vwf.vt|
-!s90 -work|work|Waveform4.vwf.vt|
+!s108 1533567237.000000
+!s107 Waveform5.vwf.vt|
+!s90 -work|work|Waveform5.vwf.vt|
 !i113 1
-R5
-R6
+R3
+R4
